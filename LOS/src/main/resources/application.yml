@@ -1,0 +1,14 @@
+spring.datasource:
+  driverClassName: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/los
+  username: root
+  password: root
+  
+  encryption:
+  appkey : $e(uRe~K3y_@9^3#
+  initVector: $e(uReIn!tV3(t0r
+  encoderPattern: UTF-8
+  algo: AES
+  cipherPattern: AES/CBC/PKCS5PADDING
+spring.jpa.properties.hibernate.current_session_context_class : org.springframework.orm.hibernate5.SpringSessionContext
+spring.jpa.hibernate.ddl-auto : update
