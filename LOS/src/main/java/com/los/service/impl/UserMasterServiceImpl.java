@@ -13,16 +13,16 @@ import com.los.response.ApiBaseResponse;
 import com.los.service.UserMasterService;
 
 @Service
-public class UserMasterServiceImpl implements UserMasterService{
-	
+public class UserMasterServiceImpl implements UserMasterService {
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Override
 	public List<UserMaster> getAllUsers() {
 		return userRepository.findAll();
 	}
-	
+
 	@Override
 	public UserMaster getUserById(Long id) {
 		Optional<UserMaster> findById = userRepository.findById(id);
@@ -40,29 +40,24 @@ public class UserMasterServiceImpl implements UserMasterService{
 
 	@Override
 	public ApiBaseResponse<?> registerUser(UserMasterDto userMasterDto) {
-		ApiBaseResponse apiBaseResponse = new ApiBaseResponse();
+		ApiBaseResponse<?> apiBaseResponse = new ApiBaseResponse();
 		try {
-			UserMaster userMaster = new UserMaster(StringUtils.isEmpty(userMasterDto
-					.getId()) != true ? Long.parseLong(userMasterDto.getId()) : null,
-							userMasterDto.getLoginId(),userMasterDto.getFirstName(),
-							userMasterDto.getLastName(),userMasterDto.getEmailId(),
-							 userMasterDto.getMobileNo(),
-							 userMasterDto.getActiveStatus(),
-							 Boolean.parseBoolean(userMasterDto.getIsAdmin()),
-							 Boolean.parseBoolean(userMasterDto.getAutoLogin()),
-							 Boolean.parseBoolean(userMasterDto.getSsoLogin()),
-							 userMasterDto.getBranchCode());
-			
+			UserMaster userMaster = new UserMaster(
+					StringUtils.isEmpty(userMasterDto.getId()) != true ? Long.parseLong(userMasterDto.getId()) : null,
+					userMasterDto.getLoginId(), userMasterDto.getFirstName(), userMasterDto.getLastName(),
+					userMasterDto.getEmailId(), userMasterDto.getMobileNo(), userMasterDto.getActiveStatus(),
+					Boolean.parseBoolean(userMasterDto.getIsAdmin()),
+					Boolean.parseBoolean(userMasterDto.getAutoLogin()),
+					Boolean.parseBoolean(userMasterDto.getSsoLogin()), userMasterDto.getBranchCode());
+
 			UserMaster saveUser = userRepository.save(userMaster);
 			apiBaseResponse.setData(saveUser);
 			apiBaseResponse.getResponseDto().setResponseCode(201);
-			apiBaseResponse.getResponseDto().setResponseDescription(
-					"User Registered Sucessfully");
+			apiBaseResponse.getResponseDto().setResponseDescription("User Registered Sucessfully");
 
 		} catch (Exception ex) {
 			apiBaseResponse.getResponseDto().setExceptionCode(234);
-			apiBaseResponse.getResponseDto().setExceptionDescription(
-					"Exception occured");
+			apiBaseResponse.getResponseDto().setExceptionDescription("Exception occured");
 		}
 		return apiBaseResponse;
 	}

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.los.model.BranchMaster;
+import com.los.model.UserMaster;
 
 /**
  * @author: Sudhir
@@ -41,8 +43,9 @@ public class ApiBaseResponse<T> implements Serializable {
 		return data;
 	}
 
-	public void setData(T data) {
-		this.data = data;
+	@SuppressWarnings("unchecked")
+	public void setData(UserMaster saveUser) {
+		this.data = (T) saveUser;
 	}
 
 	public ResponseDto getResponseDto() {
@@ -51,5 +54,10 @@ public class ApiBaseResponse<T> implements Serializable {
 
 	public void setResponseDto(ResponseDto responseDto) {
 		this.responseDto = responseDto;
+	}
+
+	public void setData(BranchMaster saveUser) {
+		 this.data=(T) saveUser;
+		
 	}
 }
