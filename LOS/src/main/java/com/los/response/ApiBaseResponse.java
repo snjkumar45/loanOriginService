@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.los.model.BranchMaster;
+import com.los.model.FacilityMaster;
 import com.los.model.UserMaster;
 
 /**
@@ -58,6 +59,11 @@ public class ApiBaseResponse<T> implements Serializable {
 
 	public void setData(BranchMaster saveUser) {
 		 this.data=(T) saveUser;
+		
+	}
+
+	public void setData(FacilityMaster facilityMaster) {
+		  
 		
 	}
 }
