@@ -3,14 +3,12 @@ package com.los.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.OneToOne;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.los.dto.BranchMasterDto;
-import com.los.model.Address;
+ 
 import com.los.model.BranchHolidays;
 import com.los.model.BranchMaster;
 import com.los.model.BranchTimings;
@@ -53,23 +51,9 @@ public class BranchMasterServiceImpl implements BranchMasterService {
 
 		try {
 			BranchMaster branchMaster = new BranchMaster();
-			Address address = new Address();
-			if (branchMasterDto.getAddress() != null && !StringUtils.isEmpty(branchMasterDto.getAddress().getId()))
-				address.setId(Long.parseLong(branchMasterDto.getAddress().getId()));
-				
-			address.setActiveStatus(branchMasterDto.getAddress().getActiveStatus());
-			address.setAddressLineOne(branchMasterDto.getAddress().getAddressLineOne());
-			address.setAddressLineTwo(branchMasterDto.getAddress().getBranchCode());
-			address.setBranchCode(branchMasterDto.getAddress().getBranchCode());
-			address.setBranchName(branchMasterDto.getAddress().getBranchName());
-			address.setBranchType(branchMasterDto.getAddress().getBranchType());
-			address.setCountry(branchMasterDto.getAddress().getCountry());
-			address.setCurrency(branchMasterDto.getAddress().getCurrency());
-			address.setDistrict(branchMasterDto.getAddress().getDistrict());
-			address.setLocation(branchMasterDto.getAddress().getLocation());
-			address.setMappedBranch(branchMasterDto.getAddress().getMappedBranch());
-			address.setPostal_zip(branchMasterDto.getAddress().getPostal_zip());
-			branchMaster.setAddress(address);
+			branchMaster.setAddress(branchMasterDto.getAddress());
+			
+			 
 			
 			CommunicationDetails communicationDetails = new CommunicationDetails();
 			if (branchMasterDto.getCommunicationDetails() != null && !StringUtils.isEmpty(branchMasterDto.getCommunicationDetails().getId()))

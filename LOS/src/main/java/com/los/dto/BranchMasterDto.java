@@ -3,6 +3,14 @@ package com.los.dto;
 public class BranchMasterDto {
 	private String id;
 
+	private String address;
+
+	private CommunicationDetailsDto communicationDetails;
+
+	private BranchTimingsDto branchTimings;
+
+	private BranchHolidaysDto branchHolidays;
+
 	public String getId() {
 		return id;
 	}
@@ -11,19 +19,11 @@ public class BranchMasterDto {
 		this.id = id;
 	}
 
-	private AddressDto address;
-
-	private CommunicationDetailsDto communicationDetails;
-
-	private BranchTimingsDto branchTimings;
-
-	private BranchHolidaysDto branchHolidays;
-
-	public AddressDto getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressDto address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -50,10 +50,5 @@ public class BranchMasterDto {
 	public void setBranchHolidays(BranchHolidaysDto branchHolidays) {
 		this.branchHolidays = branchHolidays;
 	}
-
-	
-	public BranchMasterDto() {
-		super();
-	}
-
+ 
 }
